@@ -1,31 +1,26 @@
-// Solicita la edad solo al entrar por primera vez a la página de inicio (HOME)
-function verificarEdad() {
-  const esHome = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-  if (!esHome) return;
-
-  // Verificar si ya se almacenó la edad en la sesión
-  if (sessionStorage.getItem("edadVerificada")) return;
-
-  const edad = prompt('Please, enter your age:');
-
-  // Verificar si el valor ingresado es un número
-  if (!edad || isNaN(edad)) {
-      alert('Please, enter a valid number.');
-      return verificarEdad();
+window.onload = function() {
+  // Solo si no hay edad guardada en sessionStorage, pedirla
+  if (!sessionStorage.getItem('edadVisitante')) {
+    let edad = null;
+    while (edad === null) {
+      edad = prompt("Please, enter your age");
+      if (edad === null) {
+        // Si el usuario cancela el prompt, seguir pidiendo
+        continue;
+      }
+      edad = parseInt(edad);
+      if (isNaN(edad) || edad < 0) {
+        alert("Please enter a valid age.");
+        edad = null;
+        continue;
+      }
+      if (edad < 10) {
+        alert("You are not allowed to enter this site.");
+        // Bloquear acceso recargando la página o redirigiendo
+        document.body.innerHTML = "<h1>Access denied</h1>";
+        return;
+      }
+    }
+    sessionStorage.setItem('edadVisitante', edad);
   }
-
-  // Convertir a número
-  const edadNum = parseInt(edad);
-
-  // Verificar la edad
-  if (edadNum < 10) {
-      alert('Sorry, you are not allowed to enter.');
-      window.location.href = 'https://www.google.com';
-  } else {
-      alert('Welcome to the website.');
-      sessionStorage.setItem("edadVerificada", "true");
-  }
-}
-
-// Ejecutar la función al cargar la página
-window.onload = verificarEdad;
+};
