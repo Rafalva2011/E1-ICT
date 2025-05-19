@@ -1,1 +1,84 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #dd4646;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Barra de navegación moderna */
+nav {
+  background-color: #333;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #00ffd5;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #555;
+  color: #00ffd5;
+}
+
+/* Sección */
+section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+h1, h3 {
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+/* Enlaces dentro de la sección */
+section a {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+section a:hover {
+  color: #3498db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    margin: 5px 0;
+  }
+
+  section {
+    margin: 20px;
+  }
+}
 
